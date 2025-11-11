@@ -8,24 +8,24 @@ public class PinballController : MonoBehaviour
     public float pushPower = 10f;
     public float releasePower = 30f;
 
+    private bool isLeftUp, isRightUp;
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
+        isLeftUp = Input.GetKey(KeyCode.LeftArrow);
+        isRightUp = Input.GetKey(KeyCode.RightArrow);
+    }
+
+    void FixedUpdate()
+    {
+        if (isLeftUp)
             leftHandleRb.AddTorque(pushPower, ForceMode2D.Impulse);
-        }
         else
-        {
             leftHandleRb.AddTorque(-releasePower);
-        }
-        
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
+
+        if (isRightUp)
             rightHandleRb.AddTorque(-pushPower, ForceMode2D.Impulse);
-        }
         else
-        {
             rightHandleRb.AddTorque(releasePower);
-        }
     }
 }
