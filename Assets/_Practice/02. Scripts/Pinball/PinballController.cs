@@ -10,6 +10,8 @@ public class PinballController : MonoBehaviour
 
     private bool isLeftUp, isRightUp;
 
+    private int score;
+
     void Update()
     {
         isLeftUp = Input.GetKey(KeyCode.LeftArrow);
@@ -27,5 +29,22 @@ public class PinballController : MonoBehaviour
             rightHandleRb.AddTorque(-pushPower, ForceMode2D.Impulse);
         else
             rightHandleRb.AddTorque(releasePower);
+    }
+
+    public void SetScore(int point)
+    {
+        Debug.Log(point + "점 획득");
+        
+        score += point;
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
