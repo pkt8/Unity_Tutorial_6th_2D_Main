@@ -43,8 +43,11 @@ public class CharacterMovement2D : MonoBehaviour
         //     renderers[1].flipX = false;
         // }
 
-        renderers[0].flipX = h < 0;
-        renderers[1].flipX = h < 0;
+        if (h != 0)
+        {
+            renderers[0].flipX = h < 0;
+            renderers[1].flipX = h < 0;
+        }
     }
 
     void FixedUpdate()
