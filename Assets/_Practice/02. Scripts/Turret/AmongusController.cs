@@ -41,6 +41,14 @@ public class AmongusController : MonoBehaviour
         Turn();
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground")) // 바닥에 닿은 순간
+        {
+            anim.SetBool("IsGround", true);
+        }
+    }
+    
     public void Move()
     {
         Vector3 targetPosition = rb.position + dir * moveSpeed;
@@ -63,6 +71,8 @@ public class AmongusController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            anim.SetBool("IsGround", false);
+            
             anim.SetTrigger("Jump"); // 점프 애니메이션 실행
             rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         }

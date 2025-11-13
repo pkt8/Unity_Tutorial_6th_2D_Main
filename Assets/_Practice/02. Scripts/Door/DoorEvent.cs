@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class DoorEvent : MonoBehaviour
 {
+    public CharacterMovement2D movement;
     private Animator doorAnim;
 
     void Start()
     {
         doorAnim = GetComponent<Animator>();
     }
-    
+
     // 캐릭터가 문 앞에 다가오면 문이 열리는 기능
     private void OnTriggerEnter(Collider other)
     {
