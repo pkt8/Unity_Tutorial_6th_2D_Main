@@ -28,6 +28,11 @@ public class CatController : MonoBehaviour
             jumpCount = 0;
             catAnim.SetBool("IsGround", true);
         }
+        else if (other.collider.CompareTag("Pipe"))
+        {
+            Debug.Log("Game Over");
+            // Time.timeScale = 0f;
+        }
     }
     
     private void Jump()

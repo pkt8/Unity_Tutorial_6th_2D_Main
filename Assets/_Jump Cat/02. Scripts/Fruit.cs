@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
+    public GameObject particleObj;
+    
     void OnEnable()
     {
         for (int i = 0; i < transform.childCount; i++) // 모든 과일 오브젝트 끄기
@@ -18,6 +20,8 @@ public class Fruit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            particleObj.SetActive(true);
+            
             gameObject.SetActive(false);
         }
     }

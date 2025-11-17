@@ -7,6 +7,7 @@ public class Pipe : MonoBehaviour
 
     private GameObject pipeObj;
     private GameObject fruitObj;
+    private GameObject particleObj;
     
     public float moveSpeed = 1f;
     private float randomPosY;
@@ -15,6 +16,7 @@ public class Pipe : MonoBehaviour
     {
         pipeObj = transform.GetChild(0).gameObject;
         fruitObj = transform.GetChild(1).gameObject;
+        particleObj = transform.GetChild(2).gameObject;
 
         SetType();
         transform.position = new Vector3(transform.position.x, randomPosY, 0);
@@ -30,17 +32,7 @@ public class Pipe : MonoBehaviour
             transform.position = new Vector3(10f, randomPosY, 0);
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Game Over");
-            
-            Time.timeScale = 0f;
-        }
-    }
-
+    
     private void SetType()
     {
         randomPosY = Random.Range(-6.5f, -2.5f);
@@ -48,6 +40,7 @@ public class Pipe : MonoBehaviour
         int randomIndex = Random.Range(0, 4); // 0, 1, 2, 3
 
         fruitObj.SetActive(false); // 미리 Off하는 기능
+        particleObj.SetActive(false);
         
         itemType = (ItemType)randomIndex; // 형변환(Type Casting) : 데이터 타입을 변경하는 방법
         switch (itemType)

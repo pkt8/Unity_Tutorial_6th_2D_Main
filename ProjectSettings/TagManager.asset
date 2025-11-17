@@ -9,6 +9,7 @@ TagManager:
   - Point30
   - Point50
   - Ground
+  - Pipe
   layers:
   - Default
   - TransparentFX
