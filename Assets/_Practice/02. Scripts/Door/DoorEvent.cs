@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class DoorEvent : MonoBehaviour
 {
-    public CharacterMovement2D movement;
     private Animator doorAnim;
+    public GameObject doorLockUI;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class DoorEvent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnim.SetTrigger("Open");
+            doorLockUI.SetActive(true);
         }
     }
 
@@ -24,7 +25,15 @@ public class DoorEvent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnim.SetTrigger("Close");
+            doorLockUI.SetActive(false);
         }
+    }
+
+    public void SetDoorAnimation(bool isOpen)
+    {
+        if (isOpen)
+            doorAnim.SetTrigger("Open");
+        else
+            doorAnim.SetTrigger("Close");
     }
 }
