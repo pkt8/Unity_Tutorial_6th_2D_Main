@@ -21,10 +21,9 @@ public class LottoManager : MonoBehaviour
 
     private void CreateNumber()
     {
+        numbers.Clear();
         for (int i = 1; i < 46; i++)
-        {
             numbers.Add(i);
-        }
         
         ShakeNumber();
     }
@@ -48,24 +47,19 @@ public class LottoManager : MonoBehaviour
 
     private void PickNumber()
     {
+        lottoNumbers.Clear();
         for (int i = 0; i < 6; i++)
-        {
             lottoNumbers.Add(numbers[i]); // 섞인 numbers의 숫자 6개를 lottoNumbers로 복사하는 기능
-        }
         
         lottoNumbers.Sort(); // 오름차순 정렬
         bonusNumber = numbers[6]; // 보너스 넘버 복사
 
         for (int i = 0; i < 6; i++)
-        {
             balls[i].SetNumber(lottoNumbers[i]);
-        }
         
         balls[6].SetNumber(bonusNumber);
 
         for (int i = 0; i < balls.Length; i++)
-        {
-            balls[i].gameObject.SetActive(true);
-        }
+            balls[i].GetComponent<Animator>().SetTrigger("ScaleUp");
     }
 }
