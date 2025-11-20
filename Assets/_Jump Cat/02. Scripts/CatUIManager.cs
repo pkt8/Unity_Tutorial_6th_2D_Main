@@ -6,6 +6,7 @@ public class CatUIManager : MonoBehaviour
 {
     public CatSoundManager sound;
     public GameObject cat;
+    public GameObject fadeUI;
 
     public TMP_InputField inputUI;
     public TextMeshProUGUI catNameUI;
@@ -16,6 +17,7 @@ public class CatUIManager : MonoBehaviour
     public TextMeshProUGUI gameOverFruitCount;
 
     public Button startButton;
+    public Button reStartButton;
 
     public GameObject introUI;
     public GameObject[] playObjs;
@@ -28,6 +30,7 @@ public class CatUIManager : MonoBehaviour
     void Start()
     {
         startButton.onClick.AddListener(StartEvent); // 스타트 버튼에 StartEvent 함수 등록
+        reStartButton.onClick.AddListener(RestartEvent);
 
         introUI.SetActive(true);
 
@@ -85,21 +88,32 @@ public class CatUIManager : MonoBehaviour
         // timerUI.text = $"{min} : {sec:F0}";
     }
 
-    public void GameOver()
+    public void GameOver() // Play -> Outro
     {
-        outroUI.SetActive(true);
-
+        fadeUI.SetActive(true);
+        
+        sound.MuteSound(true);
+        // playObjs[0].SetActive(false);
+        playObjs[1].SetActive(false);
+        // outroUI.SetActive(true);
         isPlay = false;
         gameOverTime.text = $"플레이 시간 : {timer:F1}초";
         gameOverFruitCount.text = $"획득한 과일의 수 : {fruitCount}개";
         
         cat.GetComponent<CircleCollider2D>().enabled = false;
-        
-        // Invoke(nameof(DelayStop), 1.5f);
     }
 
-    // private void DelayStop()
-    // {
-    //     Time.timeScale = 0;
-    // }
+    private void RestartEvent() // Outro -> Play
+    {
+        fadeUI.SetActive(false);
+        
+        sound.MuteSound(false);
+        playObjs[0].SetActive(true);
+        playObjs[1].SetActive(true);
+        outroUI.SetActive(false);
+        cat.GetComponent<CircleCollider2D>().enabled = true;
+        timer = 0f;
+        fruitCount = 0;
+        isPlay = true;
+    }
 }

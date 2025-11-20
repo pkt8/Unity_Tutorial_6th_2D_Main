@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CatController : MonoBehaviour
@@ -12,13 +13,22 @@ public class CatController : MonoBehaviour
     public float limitVelocity = 5f;
     public int jumpCount;
     public float rotPower = 3f;
-    
-    void Start()
+
+    private Vector3 initPos;
+
+    void Awake()
     {
+        initPos = transform.position;
+        
         catRb = GetComponent<Rigidbody2D>();
         catAnim = GetComponent<Animator>();
     }
 
+    void OnEnable()
+    {
+        transform.position = initPos;
+    }
+    
     void Update()
     {
         Jump();

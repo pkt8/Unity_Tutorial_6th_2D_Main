@@ -31,4 +31,12 @@ public class CatSoundManager : MonoBehaviour
             }
         }
     }
+
+    public void MuteSound(bool isMute)
+    {
+        if (isMute)
+            audioSource.Stop();
+        else
+            audioSource.Play();
+    }
 }

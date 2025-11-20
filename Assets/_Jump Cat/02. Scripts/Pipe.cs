@@ -11,13 +11,22 @@ public class Pipe : MonoBehaviour
     
     public float moveSpeed = 1f;
     private float randomPosY;
-
-    void Start()
+    
+    private Vector3 initPos;
+    
+    void Awake()
     {
+        initPos = transform.position;
+        
         pipeObj = transform.GetChild(0).gameObject;
         fruitObj = transform.GetChild(1).gameObject;
         particleObj = transform.GetChild(2).gameObject;
+    }
 
+    void OnEnable()
+    {
+        transform.position = initPos;
+        
         SetType();
         transform.position = new Vector3(transform.position.x, randomPosY, 0);
     }
