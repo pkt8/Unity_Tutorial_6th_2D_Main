@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class CatUIManager : MonoBehaviour
 {
-    public CatSoundManager sound;
+    private CatSoundManager sound;
     public GameObject cat;
-    public GameObject fadeUI;
+    private CatFade fade;
+
 
     public TMP_InputField inputUI;
     public TextMeshProUGUI catNameUI;
@@ -25,8 +26,14 @@ public class CatUIManager : MonoBehaviour
 
     public static int fruitCount; // 정적변수
     private float timer;
-    public bool isPlay;
+    private bool isPlay;
 
+    void Awake()
+    {
+        sound = FindFirstObjectByType<CatSoundManager>();
+        fade = GetComponent<CatFade>();
+    }
+    
     void Start()
     {
         startButton.onClick.AddListener(StartEvent); // 스타트 버튼에 StartEvent 함수 등록
@@ -70,42 +77,44 @@ public class CatUIManager : MonoBehaviour
     private void SetFruitCount()
     {
         fruitCountUI.text = $"X {fruitCount}";
+
+        if (fruitCount >= 2)
+        {
+            GameCompleted();
+        }
     }
 
     private void SetTimer()
     {
         timer += Time.deltaTime;
         timerUI.text = $"{timer:F1}초";
-
-        // timer = Time.time; // 유니티 실행한 시점으로부터의 누적 시간
-        // sec += Time.deltaTime;
-        // if (sec >= 60f)
-        // {
-        //     sec -= 60f;
-        //     min++;
-        // }
-        //
-        // timerUI.text = $"{min} : {sec:F0}";
     }
 
     public void GameOver() // Play -> Outro
     {
-        fadeUI.SetActive(true);
+        fade.Fade(1f, Color.black, false);
         
-        sound.MuteSound(true);
-        // playObjs[0].SetActive(false);
-        playObjs[1].SetActive(false);
-        // outroUI.SetActive(true);
         isPlay = false;
+        sound.MuteSound(true);
+        playObjs[1].SetActive(false);
         gameOverTime.text = $"플레이 시간 : {timer:F1}초";
         gameOverFruitCount.text = $"획득한 과일의 수 : {fruitCount}개";
         
         cat.GetComponent<CircleCollider2D>().enabled = false;
     }
 
+    public void GameCompleted()
+    {
+        isPlay = false;
+        sound.MuteSound(true);
+        
+        fade.Fade(2f, Color.white, true);
+        cat.GetComponent<CircleCollider2D>().enabled = false;
+    }
+
     private void RestartEvent() // Outro -> Play
     {
-        fadeUI.SetActive(false);
+        fade.fadeUI.gameObject.SetActive(false);
         
         sound.MuteSound(false);
         playObjs[0].SetActive(true);
