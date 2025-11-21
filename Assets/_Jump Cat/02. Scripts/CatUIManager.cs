@@ -8,7 +8,6 @@ public class CatUIManager : MonoBehaviour
     public GameObject cat;
     private CatFade fade;
 
-
     public TMP_InputField inputUI;
     public TextMeshProUGUI catNameUI;
     public TextMeshProUGUI fruitCountUI;
@@ -105,10 +104,10 @@ public class CatUIManager : MonoBehaviour
 
     public void GameCompleted()
     {
+        fade.Fade(2f, Color.white, true);
+        
         isPlay = false;
         sound.MuteSound(true);
-        
-        fade.Fade(2f, Color.white, true);
         cat.GetComponent<CircleCollider2D>().enabled = false;
     }
 
