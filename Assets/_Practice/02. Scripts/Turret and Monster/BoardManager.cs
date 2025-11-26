@@ -43,10 +43,20 @@ namespace Turret
 
         public void CreateTurret(Transform parent)
         {
+            if (currentTurret == null)
+                return;
+            
             GameObject turretObj = Instantiate(currentTurret);
             
             turretObj.transform.SetParent(parent);
             turretObj.transform.localPosition = Vector3.zero;
+            
+            currentTurret = null; // 터렛 추가 생성 방지
+        }
+
+        public void SetCurrentTurret(int index)
+        {
+            currentTurret = turrets[index];
         }
     }
 }
