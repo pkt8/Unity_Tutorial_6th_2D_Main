@@ -22,6 +22,9 @@ public class Tile : MonoBehaviour
         
         if (!isCreate) // 중복 생성 방지
         {
+            if (board.CurrentTurret == null)
+                return;
+            
             isCreate = true;
             board.CreateTurret(transform);
             

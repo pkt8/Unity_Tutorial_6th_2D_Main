@@ -8,6 +8,14 @@ namespace Turret
         [SerializeField] private GameObject blackTilePrefab;
         
         private GameObject currentTurret;
+        public GameObject CurrentTurret
+        {
+            get
+            {
+                return currentTurret;
+            }
+        }
+        
         [SerializeField] private GameObject[] turrets;
         [SerializeField] private GameObject[] prevTurrets;
         
