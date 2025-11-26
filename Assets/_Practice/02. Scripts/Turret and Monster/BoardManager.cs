@@ -6,7 +6,8 @@ namespace Turret
     {
         public GameObject whiteTilePrefab;
         public GameObject blackTilePrefab;
-        public GameObject turretPrefab;
+        public GameObject currentTurret;
+        public GameObject[] turrets;
 
         public Vector3 boardSize = new Vector3(10, 0, 5);
 
@@ -22,6 +23,7 @@ namespace Turret
             {
                 for (int j = 0; j < boardSize.z; j++)
                 {
+                    // 타일 생성
                     GameObject tileObj;
 
                     if ((i + j) % 2 == 0) // 두 값을 더했을 때 짝수
@@ -41,7 +43,7 @@ namespace Turret
 
         public void CreateTurret(Transform parent)
         {
-            GameObject turretObj = Instantiate(turretPrefab);
+            GameObject turretObj = Instantiate(currentTurret);
             
             turretObj.transform.SetParent(parent);
             turretObj.transform.localPosition = Vector3.zero;
