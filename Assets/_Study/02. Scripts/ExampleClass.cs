@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class ExampleClass : MonoBehaviour
 {
-    public StudyCoroutine fade;
+    public StudyEncapsulation studyCapsule;
 
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            fade.OnFade(3f, 3f, Color.white);
-        }
+        // studyCapsule.Level = 99;
+    }
+    
+    public void ViewLevel()
+    {
+        int level = studyCapsule.Level;
         
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            fade.OnFade(3f, 3f, Color.black);
-        }
+        Debug.Log("현재 레벨은 : " + level);
     }
 }

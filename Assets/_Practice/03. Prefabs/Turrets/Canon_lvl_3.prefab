@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 33000014089371946}
   - component: {fileID: 23000010303888186}
   - component: {fileID: 95000013924364946}
-  m_Layer: 0
+  - component: {fileID: 7632373167751562300}
+  - component: {fileID: -1807154240772329075}
+  m_Layer: 2
   m_Name: Canon_lvl_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +112,42 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7632373167751562300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012105359850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2c0cf1bee47e74a90e3fd84f074d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  angle: 60
+  rotSpeed: 0.5
+--- !u!135 &-1807154240772329075
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012105359850}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 7
+  m_Center: {x: 0, y: 0.3065894, z: 0.09309788}
 --- !u!1 &1000012389614952
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +159,7 @@ GameObject:
   - component: {fileID: 4000011911808112}
   - component: {fileID: 33000012567130406}
   - component: {fileID: 23000010082842008}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gunpoint_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +245,7 @@ GameObject:
   - component: {fileID: 4000011472825424}
   - component: {fileID: 33000014023723060}
   - component: {fileID: 23000012712600670}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gunpoint_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +331,7 @@ GameObject:
   - component: {fileID: 4000013643732794}
   - component: {fileID: 33000010505800892}
   - component: {fileID: 23000012824091326}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: canon_lvl_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

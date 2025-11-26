@@ -10,6 +10,7 @@ TagManager:
   - Point50
   - Ground
   - Pipe
+  - Monster
   layers:
   - Default
   - TransparentFX

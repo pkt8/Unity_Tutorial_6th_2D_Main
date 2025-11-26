@@ -24,6 +24,18 @@ public class Tile : MonoBehaviour
         {
             isCreate = true;
             board.CreateTurret(transform);
+            
+            GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
+    void OnMouseOver() // 마우스가 오브젝트에 올려진 경우 발생하는 이벤트 함수
+    {
+        // 터렛이 이미 생성된 타일의 경우 -> 미리보기 보이면 X
+
+        if (!isCreate)
+        {
+            board.SetPreviewTurret(transform.position);
         }
     }
 }

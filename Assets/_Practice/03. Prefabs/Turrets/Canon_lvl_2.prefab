@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000012415272414}
   - component: {fileID: 33000010333661300}
   - component: {fileID: 23000010353726516}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gunpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4000012307128758}
   - component: {fileID: 33000012205836344}
   - component: {fileID: 23000011603307586}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: canon_lvl_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,9 @@ GameObject:
   - component: {fileID: 33000012798234764}
   - component: {fileID: 23000011206435812}
   - component: {fileID: 95000013199790468}
-  m_Layer: 0
+  - component: {fileID: -3030959864962741357}
+  - component: {fileID: 551296565924456280}
+  m_Layer: 2
   m_Name: Canon_lvl_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,3 +285,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3030959864962741357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013227101710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2c0cf1bee47e74a90e3fd84f074d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  angle: 60
+  rotSpeed: 0.5
+--- !u!135 &551296565924456280
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013227101710}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 7
+  m_Center: {x: 0, y: 0.23785354, z: 0.0042273253}
