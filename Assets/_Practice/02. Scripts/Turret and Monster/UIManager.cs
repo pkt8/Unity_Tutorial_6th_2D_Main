@@ -6,8 +6,8 @@ namespace Turret
     {
         private BoardManager board;
 
-        public GameObject mainUI;
-        public GameObject selectUI;
+        [SerializeField] private GameObject mainUI;
+        [SerializeField] private GameObject selectUI;
 
         void Start()
         {
@@ -16,17 +16,12 @@ namespace Turret
 
         public void SelectUIOn()
         {
-            // main UI Off
-            // select UI On
-
             mainUI.SetActive(false);
             selectUI.SetActive(true);
         }
 
         public void SetTurret(int index)
         {
-            // BoardManager에 있는 Current Turret을 변경
-            
             board.SetCurrentTurret(index);
             
             mainUI.SetActive(true);

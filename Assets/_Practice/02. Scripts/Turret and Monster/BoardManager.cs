@@ -6,22 +6,16 @@ namespace Turret
     {
         [SerializeField] private GameObject whiteTilePrefab;
         [SerializeField] private GameObject blackTilePrefab;
-        
-        private GameObject currentTurret;
-        public GameObject CurrentTurret
-        {
-            get
-            {
-                return currentTurret;
-            }
-        }
+
+        public GameObject CurrentTurret { get; private set; }
         
         [SerializeField] private GameObject[] turrets;
-        [SerializeField] private GameObject[] prevTurrets;
         
+        [SerializeField] private GameObject[] prevTurrets;
+
         private int turretIndex;
 
-        public Vector3 boardSize = new Vector3(10, 0, 5);
+        [SerializeField] private Vector3 boardSize = new Vector3(10, 0, 5);
 
         void Start()
         {
@@ -55,22 +49,22 @@ namespace Turret
 
         public void CreateTurret(Transform parent)
         {
-            if (currentTurret == null)
+            if (CurrentTurret == null)
                 return;
-            
-            GameObject turretObj = Instantiate(currentTurret);
-            
+
+            GameObject turretObj = Instantiate(CurrentTurret);
+
             turretObj.transform.SetParent(parent);
             turretObj.transform.localPosition = Vector3.zero;
-            
-            currentTurret = null; // 터렛 추가 생성 방지
+
+            CurrentTurret = null; // 터렛 추가 생성 방지
             prevTurrets[turretIndex].SetActive(false); // 미리보기 터렛 끄는 기능
         }
 
         public void SetCurrentTurret(int index) // 터렛 선택
         {
             turretIndex = index;
-            currentTurret = turrets[turretIndex];
+            CurrentTurret = turrets[turretIndex];
 
             // 기존에 선택한 Prev 터렛 초기화
             foreach (GameObject turret in prevTurrets)
@@ -82,11 +76,11 @@ namespace Turret
         public void SetPreviewTurret(Vector3 tilePos)
         {
             // 터렛을 선택하지 않았을 때 Prev 터렛이 뜨는 문제 방지
-            if (currentTurret == null)
+            if (CurrentTurret == null)
                 return;
-            
+
             prevTurrets[turretIndex].SetActive(true);
-            
+
             prevTurrets[turretIndex].transform.position = tilePos;
         }
     }

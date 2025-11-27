@@ -1,34 +1,38 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Turret
 {
     public class TurretController : MonoBehaviour
     {
+        private Animator turretAnim;
+        [SerializeField] private ParticleSystem shootParticle;
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private Transform shootPoint;
+
         private Transform turretHead;
+        private Transform target;
 
-        public Transform target;
+        [SerializeField] private float angle = 60f;
+        [SerializeField] private float rotSpeed = 0.5f;
 
-        public float angle = 60f; // 회전 각도 60도
-        public float rotSpeed = 0.5f; // 회전 속도
+        [SerializeField] private float shootCooldown = 1f;
+        [SerializeField] private float bulletSpeed = 15f;
 
         private float theta;
 
         void Start()
         {
+            turretAnim = GetComponent<Animator>();
             turretHead = transform.GetChild(0);
+
+            StartCoroutine(ShootRoutine());
         }
 
         void Update()
         {
-            if (target != null) // Target이 있을 때
-            {
-                Shoot();
-            }
-            else // Target이 없을 때
-            {
-                Turn();
-            }
+            Turn();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -46,21 +50,40 @@ namespace Turret
                 target = null;
             }
         }
-
-        // Target이 없을 때 주변을 둘러보는 기능
+        
         private void Turn()
         {
-            theta += Time.deltaTime * rotSpeed;
+            if (target != null) // Target이 있을 때 대상을 바라보는 기능
+            {
+                turretHead.LookAt(target);
+            }
+            else // Target이 없을 때 주변을 둘러보는 기능
+            {
+                theta += Time.deltaTime * rotSpeed;
 
-            float rotationAngle = Mathf.Sin(theta) * angle;
+                float rotationAngle = Mathf.Sin(theta) * angle;
 
-            turretHead.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+                turretHead.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+            }
         }
-
-        // Target이 있을 때 대상을 바라보는 기능
-        private void Shoot()
+        
+        // 타겟이 있을 때까지 대기
+        IEnumerator ShootRoutine()
         {
-            turretHead.LookAt(target);
+            while (true)
+            {
+                yield return new WaitUntil(() => target != null);
+                
+                GameObject bulletObj = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+                Rigidbody bulletRb = bulletObj.GetComponent<Rigidbody>();
+                
+                bulletRb.AddForce(shootPoint.forward * bulletSpeed, ForceMode.Impulse);
+                
+                turretAnim.SetTrigger("Shoot");
+                shootParticle.Play();
+                
+                yield return new WaitForSeconds(shootCooldown);
+            }
         }
     }
 }

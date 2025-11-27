@@ -10,7 +10,7 @@ public class Tile : MonoBehaviour
 
     void Start()
     {
-        board = FindFirstObjectByType<BoardManager>();
+        board = FindFirstObjectByType<BoardManager>(); // 자동 할당
     }
     
     void OnMouseDown() // 오브젝트를 클릭했을 때 이벤트 함수
