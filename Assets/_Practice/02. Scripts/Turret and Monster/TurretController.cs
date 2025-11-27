@@ -55,9 +55,20 @@ namespace Turret
         {
             if (target != null) // Target이 있을 때 대상을 바라보는 기능
             {
-                Vector3 targetPos = target.position + Vector3.up * 0.5f; // 타겟보다 살짝 높이 올려서 발사
+                Vector3 targetPos = target.position; // 타겟보다 살짝 높이 올려서 발사
                 
                 turretHead.LookAt(targetPos);
+
+                // float currentAngle = turretHead.localEulerAngles.y; // 0 ~ 360도 범위
+                //
+                // if (currentAngle > 180f)
+                // {
+                //     currentAngle -= 360f; // -180 ~ 180도 범위로 변경
+                // }
+                //
+                // float nomalizeAngle = Mathf.Clamp(currentAngle / angle, -1f, 1f);
+                //
+                // theta = Mathf.Asin(nomalizeAngle);
             }
             else // Target이 없을 때 주변을 둘러보는 기능
             {

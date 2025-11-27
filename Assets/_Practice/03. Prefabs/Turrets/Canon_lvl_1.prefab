@@ -121,7 +121,7 @@ Transform:
   - {fileID: 2193971042120171301}
   - {fileID: 1245751721614347023}
   m_Father: {fileID: 4000014011301926}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.00001401558, y: 0, z: 0}
 --- !u!33 &33000013619817420
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ Transform:
   m_Children:
   - {fileID: 4000014011301926}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.000007629394, y: 0, z: 0}
 --- !u!33 &33000012028477070
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -326,6 +326,7 @@ MonoBehaviour:
   angle: 60
   rotSpeed: 0.5
   shootCooldown: 1
+  bulletSpeed: 15
 --- !u!1 &8975194821446571720
 GameObject:
   m_ObjectHideFlags: 0
