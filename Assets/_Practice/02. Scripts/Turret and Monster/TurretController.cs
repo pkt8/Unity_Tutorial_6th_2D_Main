@@ -55,7 +55,9 @@ namespace Turret
         {
             if (target != null) // Target이 있을 때 대상을 바라보는 기능
             {
-                turretHead.LookAt(target);
+                Vector3 targetPos = target.position + Vector3.up * 0.5f; // 타겟보다 살짝 높이 올려서 발사
+                
+                turretHead.LookAt(targetPos);
             }
             else // Target이 없을 때 주변을 둘러보는 기능
             {

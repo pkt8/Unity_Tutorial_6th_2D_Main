@@ -20,7 +20,9 @@ namespace Turret
         {
             if (other.CompareTag("Monster"))
             {
-                Debug.Log("데미지 적용");
+                Goblin goblin = other.GetComponent<Goblin>();
+                
+                goblin.GetDamage(damage);
 
                 Destroy(gameObject);
             }
