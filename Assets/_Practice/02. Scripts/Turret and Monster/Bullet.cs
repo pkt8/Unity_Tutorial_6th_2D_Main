@@ -20,11 +20,20 @@ namespace Turret
         {
             if (other.CompareTag("Monster"))
             {
-                Goblin goblin = other.GetComponent<Goblin>();
-                
-                goblin.GetDamage(damage);
+                if (other.GetComponent<Goblin>())
+                {
+                    Goblin monster = other.GetComponent<Goblin>();
+                    monster.GetDamage(damage);
 
-                Destroy(gameObject);
+                    Destroy(gameObject);
+                }
+                else if (other.GetComponent<HobGoblin>())
+                {
+                    HobGoblin monster = other.GetComponent<HobGoblin>();
+                    monster.GetDamage(damage);
+
+                    Destroy(gameObject);
+                }
             }
         }
     }

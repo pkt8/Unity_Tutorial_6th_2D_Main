@@ -40710,9 +40710,10 @@ GameObject:
   - component: {fileID: 9598066}
   - component: {fileID: 5465622}
   - component: {fileID: 1861722696880679713}
+  - component: {fileID: 8404993722337349085}
   m_Layer: 7
   m_Name: Hob Goblin
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40812,3 +40813,17 @@ CapsuleCollider:
   m_Height: 20
   m_Direction: 1
   m_Center: {x: 0, y: 10, z: 0}
+--- !u!114 &8404993722337349085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8bbadd8302f162459496a2732068de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 5
+  moveSpeed: 1.5

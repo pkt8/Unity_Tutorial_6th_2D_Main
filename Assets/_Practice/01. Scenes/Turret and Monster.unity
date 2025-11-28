@@ -2026,7 +2026,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9721dfe94d09b954fbe28dce174bb144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 193048, guid: 09e18cba33ece644c8af0f72d0a23491, type: 3}
+  monsterPrefabs:
+  - {fileID: 193048, guid: 09e18cba33ece644c8af0f72d0a23491, type: 3}
+  - {fileID: 165622, guid: 9095ca9ddd7e92444a730b79787c6bc9, type: 3}
   spawnPoint: {fileID: 358695402}
   spawnTime: 3
 --- !u!1 &1577539568

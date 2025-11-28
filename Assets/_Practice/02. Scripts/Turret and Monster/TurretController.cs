@@ -55,10 +55,11 @@ namespace Turret
         {
             if (target != null) // Target이 있을 때 대상을 바라보는 기능
             {
-                Vector3 targetPos = target.position; // 타겟보다 살짝 높이 올려서 발사
+                Vector3 targetPos = target.position + Vector3.up * 0.5f; // 타겟보다 살짝 높이 올려서 발사
                 
                 turretHead.LookAt(targetPos);
 
+                // 마지막으로 LookAt한 상태에서 이어서 회전하는 기능
                 // float currentAngle = turretHead.localEulerAngles.y; // 0 ~ 360도 범위
                 //
                 // if (currentAngle > 180f)

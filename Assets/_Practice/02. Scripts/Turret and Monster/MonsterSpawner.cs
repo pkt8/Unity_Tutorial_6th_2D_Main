@@ -5,7 +5,7 @@ namespace Turret
 {
     public class MonsterSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject monsterPrefab;
+        [SerializeField] private GameObject[] monsterPrefabs;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private float spawnTime = 3f;
 
@@ -14,8 +14,9 @@ namespace Turret
             while (true)
             {
                 yield return new WaitForSeconds(spawnTime);
-
-                Instantiate(monsterPrefab, spawnPoint.position, spawnPoint.rotation);
+                
+                int randomIndex = Random.Range(0, monsterPrefabs.Length);
+                Instantiate(monsterPrefabs[randomIndex], spawnPoint.position, spawnPoint.rotation);
             }
         }
     }
