@@ -14498,6 +14498,7 @@ GameObject:
   - component: {fileID: 9543920}
   - component: {fileID: 5443920}
   - component: {fileID: 6571017247989540203}
+  - component: {fileID: 1519697477577586638}
   m_Layer: 7
   m_Name: Troll
   m_TagString: Monster
@@ -14598,6 +14599,18 @@ CapsuleCollider:
   m_Height: 27
   m_Direction: 1
   m_Center: {x: 0, y: 13.5, z: 0}
+--- !u!114 &1519697477577586638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98ae5c581064d36a8549fde049b6975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &143818
 GameObject:
   m_ObjectHideFlags: 0

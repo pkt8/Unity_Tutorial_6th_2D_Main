@@ -2029,6 +2029,8 @@ MonoBehaviour:
   monsterPrefabs:
   - {fileID: 193048, guid: 09e18cba33ece644c8af0f72d0a23491, type: 3}
   - {fileID: 165622, guid: 9095ca9ddd7e92444a730b79787c6bc9, type: 3}
+  - {fileID: 180470, guid: 48b675ef000c4c449b06fc867e105a3c, type: 3}
+  - {fileID: 143816, guid: 45e9b74b19866904098f391cf9a13462, type: 3}
   spawnPoint: {fileID: 358695402}
   spawnTime: 3
 --- !u!1 &1577539568

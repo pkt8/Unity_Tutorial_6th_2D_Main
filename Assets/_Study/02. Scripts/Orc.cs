@@ -2,24 +2,24 @@
 
 namespace OOP
 {
-    public class Orc : Monster
+    public class Orc : Monster, IMeleeAttack, IRangeAttack
     {
-        void Start()
+        public float MeleeDamage { get; set; }
+        public float RangeDamage { get; set; }
+        
+        protected override void Attack()
         {
-            Shout();
-
-            Attack();
+            Debug.Log("기본 공격");
         }
         
-        public override void Attack()
+        public void MeleeAttack()
         {
-            Debug.Log("양손 도끼로 범위 공격");
+            Debug.Log("근접 공격");
         }
         
-        public override void Shout()
+        public void RangeAttack()
         {
-            base.Shout();
-            Debug.Log("오크 오크");
+            Debug.Log("원거리 공격");
         }
     }
 }

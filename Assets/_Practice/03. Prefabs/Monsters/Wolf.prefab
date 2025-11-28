@@ -15831,6 +15831,7 @@ GameObject:
   - component: {fileID: 9573564}
   - component: {fileID: 5480392}
   - component: {fileID: 149174954566618104}
+  - component: {fileID: 2696509994845370813}
   m_Layer: 7
   m_Name: Wolf
   m_TagString: Monster
@@ -15928,3 +15929,15 @@ CapsuleCollider:
   m_Height: 15
   m_Direction: 1
   m_Center: {x: 0, y: 7.5, z: 0}
+--- !u!114 &2696509994845370813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c109110f2704ca1a392a1902279353d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
