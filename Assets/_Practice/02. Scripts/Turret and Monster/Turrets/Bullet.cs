@@ -6,6 +6,7 @@ namespace Turret
     [RequireComponent(typeof(Rigidbody))]
     public class Bullet : MonoBehaviour
     {
+        public TurretController turret;
         private Rigidbody rb;
 
         [SerializeField] private float damage = 1f;
@@ -20,7 +21,7 @@ namespace Turret
             if (other.CompareTag("Monster"))
             {
                 Monster monster =  other.GetComponent<Monster>();
-                monster.GetDamage(damage);
+                monster.GetDamage(damage, turret);
 
                 Destroy(gameObject);
             }

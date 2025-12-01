@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using Turret;
+using UnityEngine;
 
 public interface IDamageable
 {
-    int Hp { get; set; }
-    
-    void TakeDamage(int dmg);
+    void GetDamage(float damage, TurretController turret);
+
     void Death();
 }
