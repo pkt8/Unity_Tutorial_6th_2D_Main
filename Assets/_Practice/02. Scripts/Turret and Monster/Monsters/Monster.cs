@@ -7,6 +7,8 @@ namespace Turret
 {
     public class Monster : MonoBehaviour, IDamageable
     {
+        private ItemManager itemManager;
+        
         private Animator anim;
         private Rigidbody rb;
         private Collider coll;
@@ -25,6 +27,8 @@ namespace Turret
 
         protected virtual void Init(float hp, float moveSpeed)
         {
+            itemManager = FindFirstObjectByType<ItemManager>();
+            
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
             coll = GetComponent<Collider>();
@@ -83,6 +87,7 @@ namespace Turret
             isMove = false;
             coll.enabled = false;
             rb.isKinematic = true;
+            itemManager.SpawnItem(transform);
 
             foreach (TurretController turret in turrets)
                 turret.SetTarget(transform);
