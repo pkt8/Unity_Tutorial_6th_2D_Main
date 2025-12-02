@@ -34,16 +34,21 @@ public class AdventurerMovement : MonoBehaviour
 
     private void SetAnimation()
     {
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-
-        // if (h < 0)
-        //     renderer.flipX = true;
-        // else if (h > 0)
-        //     renderer.flipX = false;
-
         if (h != 0)
-            renderer.flipX = h < 0;
-
+            transform.localScale = new Vector3(h, 1, 1);
+        
+        // if (h < 0)
+        //     transform.localScale = new Vector3(-1, 1, 1);
+        // else if (h > 0)
+        //     transform.localScale = new Vector3(1, 1, 1);
+        //
+        //
+        // if (h != 0)
+        // {
+        //     float scaleX = h > 0 ? 1 : -1;
+        //     transform.localScale = new Vector3(scaleX, 1, 1);
+        // }
+        
         anim.SetFloat("AxisX", h);
         anim.SetFloat("AxisY", v);
     }
