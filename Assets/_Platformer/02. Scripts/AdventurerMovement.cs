@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class AdventurerMovement : MonoBehaviour
 {
+    public enum InputType { Keybaord, Joystick }
+    public InputType inputType;
+    
     private Animator anim;
     private Rigidbody2D rb;
     private CapsuleCollider2D coll;
@@ -21,10 +24,14 @@ public class AdventurerMovement : MonoBehaviour
 
     void Update()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
-
-        Jump();
+        if (inputType == InputType.Keybaord)
+        {
+            h = Input.GetAxisRaw("Horizontal");
+            v = Input.GetAxisRaw("Vertical");
+        }
+        
+        if (Input.GetButtonDown("Jump"))
+            Jump();
     }
 
     void FixedUpdate()
@@ -49,14 +56,24 @@ public class AdventurerMovement : MonoBehaviour
         }
     }
 
+    public void InputJoystick(float h, float v)
+    {
+        if (inputType == InputType.Joystick)
+        {
+            this.h = h;
+            this.v = v;
+        }
+    }
+
     private void Move()
     {
+        
         rb.linearVelocityX = h * moveSpeed;
     }
 
-    private void Jump()
+    public void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (anim.GetBool("IsGround"))
         {
             anim.SetBool("IsGround", false);
 
@@ -68,33 +85,30 @@ public class AdventurerMovement : MonoBehaviour
     private void SetAnimation()
     {
         if (h != 0)
-            transform.localScale = new Vector3(h, 1, 1);
-        
-        // if (h < 0)
-        //     transform.localScale = new Vector3(-1, 1, 1);
-        // else if (h > 0)
-        //     transform.localScale = new Vector3(1, 1, 1);
-        //
-        //
-        // if (h != 0)
-        // {
-        //     float scaleX = h > 0 ? 1 : -1;
-        //     transform.localScale = new Vector3(scaleX, 1, 1);
-        // }
+        {
+            float scaleX = 0f;
+            if (h > 0)
+                scaleX = 1;
+            else if (h < 0)
+                scaleX = -1;
+            
+            // float scaleX = h > 0 ? 1 : -1;
+            
+            transform.localScale = new Vector3(scaleX, 1, 1);
+        }
 
-        if (v < 0) // Crouch 상태
+        if (v < -0.45f) // Crouch 상태
         {
             coll.offset = new Vector2(coll.offset.x, 0.55f);
             coll.size = new Vector2(coll.size.x, 1.1f);
-            moveSpeed = 1.5f;
+            moveSpeed = 1f;
         }
-        else if (v >= 0) // Idle 상태
+        else if (v >= -0.45f) // Idle 상태
         {
             coll.offset = new Vector2(coll.offset.x, 0.8f);
             coll.size = new Vector2(coll.size.x, 1.6f);
             moveSpeed = 3f;
         }
-        
         
         anim.SetFloat("AxisX", h);
         anim.SetFloat("AxisY", v);
