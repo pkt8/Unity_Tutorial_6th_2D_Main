@@ -4,19 +4,23 @@ using UnityEngine.UI;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
+    private AdventurerAttack attack;
     private AdventurerMovement movement;
     
     [SerializeField] private GameObject backgroundUI;
     [SerializeField] private GameObject handleUI;
 
+    [SerializeField] private Button atkButton;
     [SerializeField] private Button jumpButton;
 
     private Vector2 startPos, currentPos;
 
     void Awake()
     {
+        attack = FindFirstObjectByType<AdventurerAttack>();
         movement = FindFirstObjectByType<AdventurerMovement>();
-
+        
+        atkButton.onClick.AddListener(attack.Attack);
         jumpButton.onClick.AddListener(movement.Jump);
     }
     

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AdventurerMovement : MonoBehaviour
 {
-    public enum InputType { Keybaord, Joystick }
+    public enum InputType { Keyboard, Joystick }
     public InputType inputType;
     
     private Animator anim;
@@ -24,7 +24,7 @@ public class AdventurerMovement : MonoBehaviour
 
     void Update()
     {
-        if (inputType == InputType.Keybaord)
+        if (inputType == InputType.Keyboard)
         {
             h = Input.GetAxisRaw("Horizontal");
             v = Input.GetAxisRaw("Vertical");
