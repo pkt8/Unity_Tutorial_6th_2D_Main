@@ -67,7 +67,6 @@ public class AdventurerMovement : MonoBehaviour
 
     private void Move()
     {
-        
         rb.linearVelocityX = h * moveSpeed;
     }
 

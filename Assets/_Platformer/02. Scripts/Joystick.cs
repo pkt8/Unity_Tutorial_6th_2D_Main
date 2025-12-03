@@ -45,7 +45,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         float maxDistance = Mathf.Min(dragDir.magnitude, 75f);
         
         Vector2 normalDir = dragDir.normalized;
-
+        
         movement.InputJoystick(normalDir.x, normalDir.y);
         
         handleUI.transform.position = startPos + normalDir * maxDistance;
