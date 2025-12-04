@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AdventurerMovement : MonoBehaviour
 {
-    public enum InputType { Keyboard, Joystick }
     public InputType inputType;
 
     private SoundManager sound;
