@@ -4,20 +4,52 @@ namespace Platformer
 {
     public class SoundManager : MonoBehaviour
     {
-        public AudioSource bgmAudio;
-        public AudioSource eventAudio;
+        public AudioSource[] bgmAudios;
+        public AudioSource[] eventAudios;
         public AudioClip[] clips;
 
-        public void SoundPlay(int index) // 배경음악 용도
+        public void SoundPlay(string clipName) // 배경음악 용도
         {
-            bgmAudio.clip = clips[index];
-            bgmAudio.loop = true;
-            bgmAudio.Play();
+            foreach (var audio in bgmAudios)
+            {
+                if (!audio.isPlaying)
+                {
+                    foreach (var clip in clips)
+                    {
+                        if (clip.name.Equals(clipName))
+                        {
+                            audio.clip = clip;
+                            audio.loop = true;
+                            audio.Play();
+                            return;
+                        }
+                    }
+                    Debug.Log($"{clipName} 파일을 찾을 수 없습니다.");
+                    return;
+                }
+            }
+            Debug.Log($"재생 가능한 AudioSource가 없습니다.");
         }
 
-        public void SoundOneShot(int index) // 이벤트 사운드 용도
+        public void SoundOneShot(string clipName) // 이벤트 사운드 용도
         {
-            eventAudio.PlayOneShot(clips[index]);
+            foreach (var audio in eventAudios)
+            {
+                if (!audio.isPlaying)
+                {
+                    foreach (var clip in clips)
+                    {
+                        if (clip.name.Equals(clipName))
+                        {
+                            audio.PlayOneShot(clip);
+                            return;
+                        }
+                    }
+                    Debug.Log($"{clipName} 파일을 찾을 수 없습니다.");
+                    return;
+                }
+            }
+            Debug.Log($"재생 가능한 AudioSource가 없습니다.");
         }
     }
 } 

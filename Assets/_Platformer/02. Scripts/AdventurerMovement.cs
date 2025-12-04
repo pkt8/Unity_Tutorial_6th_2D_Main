@@ -17,7 +17,7 @@ public class AdventurerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 7f;
-
+    
     void Start()
     {
         sound = FindFirstObjectByType<SoundManager>();
@@ -49,6 +49,7 @@ public class AdventurerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+            sound.SoundOneShot("Footstep Grass");
             anim.SetBool("IsGround", true);
         }
     }
@@ -79,6 +80,8 @@ public class AdventurerMovement : MonoBehaviour
     {
         if (anim.GetBool("IsGround"))
         {
+            sound.SoundOneShot("Attack1");
+            
             anim.SetBool("IsGround", false);
 
             anim.SetTrigger("Jump");
@@ -120,6 +123,6 @@ public class AdventurerMovement : MonoBehaviour
 
     public void FootStep()
     {
-        sound.SoundOneShot();
+        sound.SoundOneShot("Footstep Field");
     }
 }

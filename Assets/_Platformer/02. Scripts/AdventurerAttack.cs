@@ -1,3 +1,4 @@
+using Platformer;
 using UnityEngine;
 
 public class AdventurerAttack : MonoBehaviour
@@ -5,12 +6,16 @@ public class AdventurerAttack : MonoBehaviour
     public enum InputType { Keyboard, Joystick }
     public InputType inputType;
 
+    private SoundManager sound;
+
     private Animator anim;
 
     private bool isAttack, isCombo, isFinal;
 
     void Start()
     {
+        sound = FindFirstObjectByType<SoundManager>();
+        
         anim = GetComponent<Animator>();
     }
 
@@ -19,9 +24,7 @@ public class AdventurerAttack : MonoBehaviour
         if (inputType == InputType.Keyboard)
         {
             if (Input.GetKeyDown(KeyCode.Z))
-            {
                 Attack();
-            }
         }
     }
 
@@ -59,5 +62,10 @@ public class AdventurerAttack : MonoBehaviour
         isCombo = false;
         isFinal = false;
         anim.SetInteger("Combo", 0);
+    }
+
+    public void AttackSound(string clipName)
+    {
+        sound.SoundOneShot(clipName);
     }
 }
