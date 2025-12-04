@@ -6,15 +6,10 @@ namespace Platformer
 {
     public class SoundManager : MonoBehaviour
     {
-        private AdventurerMovement movement;
-        private AdventurerAttack attack;
-
         [SerializeField] private AudioSource[] bgmAudios;
         [SerializeField] private AudioSource[] eventAudios;
         [SerializeField] private AudioClip[] clips;
-
-        [SerializeField] private TMP_Dropdown selectedInput;
-
+        
         [SerializeField] private Slider bgmVolume;
         [SerializeField] private Slider eventVolume;
 
@@ -23,11 +18,6 @@ namespace Platformer
 
         void Awake()
         {
-            movement = FindFirstObjectByType<AdventurerMovement>();
-            attack = FindFirstObjectByType<AdventurerAttack>();
-
-            selectedInput.onValueChanged.AddListener(SetInputType);
-
             bgmVolume.onValueChanged.AddListener(BgmVolume);
             eventVolume.onValueChanged.AddListener(EventVolume);
 
@@ -97,21 +87,7 @@ namespace Platformer
 
             Debug.Log($"재생 가능한 AudioSource가 없습니다.");
         }
-
-        private void SetInputType(int index)
-        {
-            if (index == 0) // Keyboard 설정
-            {
-                movement.inputType = InputType.Keyboard;
-                attack.inputType = InputType.Keyboard;
-            }
-            else if (index == 1) // Joystick 설정
-            {
-                movement.inputType = InputType.Joystick;
-                attack.inputType = InputType.Joystick;
-            }
-        }
-
+        
         private void BgmVolume(float volume)
         {
             foreach (var audio in bgmAudios)

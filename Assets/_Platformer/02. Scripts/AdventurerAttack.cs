@@ -53,7 +53,7 @@ public class AdventurerAttack : MonoBehaviour
             anim.SetInteger("Combo", 2);
         else
             ClearCombo();
-    }
+    } 
 
     public void ClearCombo()
     {
