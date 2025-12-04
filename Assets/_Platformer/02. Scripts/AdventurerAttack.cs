@@ -7,9 +7,7 @@ public class AdventurerAttack : MonoBehaviour
 
     private Animator anim;
 
-    public bool isAttack = false;
-    public bool isCombo = false;
-    public bool isFinal = false;
+    private bool isAttack, isCombo, isFinal;
 
     void Start()
     {

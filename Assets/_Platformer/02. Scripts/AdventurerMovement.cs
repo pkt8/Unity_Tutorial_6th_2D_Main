@@ -1,10 +1,13 @@
 using System;
+using Platformer;
 using UnityEngine;
 
 public class AdventurerMovement : MonoBehaviour
 {
     public enum InputType { Keyboard, Joystick }
     public InputType inputType;
+
+    private SoundManager sound;
     
     private Animator anim;
     private Rigidbody2D rb;
@@ -17,6 +20,8 @@ public class AdventurerMovement : MonoBehaviour
 
     void Start()
     {
+        sound = FindFirstObjectByType<SoundManager>();
+        
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<CapsuleCollider2D>();
@@ -111,5 +116,10 @@ public class AdventurerMovement : MonoBehaviour
         
         anim.SetFloat("AxisX", h);
         anim.SetFloat("AxisY", v);
+    }
+
+    public void FootStep()
+    {
+        sound.SoundOneShot();
     }
 }
