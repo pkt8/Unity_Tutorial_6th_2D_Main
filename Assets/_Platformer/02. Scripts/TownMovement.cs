@@ -1,9 +1,9 @@
 using Platformer;
 using UnityEngine;
 
-public class TownMovement : MonoBehaviour
+public class TownMovement : MonoBehaviour, IMovement
 {
-    public InputType inputType;
+    public InputType inputType { get; set; }
 
     private SoundManager sound;
     
@@ -48,13 +48,13 @@ public class TownMovement : MonoBehaviour
         }
     }
     
-    private void Move()
+    public void Move()
     {
         Vector2 dir = new Vector2(h, v);
         rb.linearVelocity = dir * moveSpeed;
     }
     
-    private void SetAnimation()
+    public void SetAnimation()
     {
         if (h != 0)
         {
@@ -72,7 +72,11 @@ public class TownMovement : MonoBehaviour
         anim.SetFloat("AxisX", h);
         anim.SetFloat("AxisY", v);
     }
-    
+
+    public void Jump()
+    {
+        // Town에서는 사용 X
+    }
     public void FootStep()
     {
         sound.SoundOneShot("Footstep Field");

@@ -2,9 +2,9 @@ using System;
 using Platformer;
 using UnityEngine;
 
-public class AdventurerMovement : MonoBehaviour
+public class AdventurerMovement : MonoBehaviour, IMovement
 {
-    public InputType inputType;
+    public InputType inputType { get; set; }
 
     private SoundManager sound;
     
@@ -60,7 +60,7 @@ public class AdventurerMovement : MonoBehaviour
             anim.SetBool("IsGround", false);
         }
     }
-
+    
     public void InputJoystick(float h, float v)
     {
         if (inputType == InputType.Joystick)
@@ -70,7 +70,7 @@ public class AdventurerMovement : MonoBehaviour
         }
     }
 
-    private void Move()
+    public void Move()
     {
         rb.linearVelocityX = h * moveSpeed;
     }
@@ -88,7 +88,7 @@ public class AdventurerMovement : MonoBehaviour
         }
     }
     
-    private void SetAnimation()
+    public void SetAnimation()
     {
         if (h != 0)
         {
