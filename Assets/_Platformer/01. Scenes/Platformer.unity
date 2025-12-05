@@ -993,6 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c98db485e2405e4998f320a0f6a7a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneType: 1
   backgroundUI: {fileID: 592504752}
   handleUI: {fileID: 1905877777}
   atkButton: {fileID: 770926940}
@@ -3522,6 +3523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5127a429581644dab520153d78cbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneType: 1
   selectedInput: {fileID: 669493454}
   optionUI: {fileID: 1729580100}
   optionButton: {fileID: 1085884961}
@@ -3836,7 +3838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eea6bb8c0347004484d51fffdaaa205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputType: 1
+  <inputType>k__BackingField: 1
   moveSpeed: 3
   jumpPower: 7
 --- !u!114 &1076552317

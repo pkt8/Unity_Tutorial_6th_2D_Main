@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TownMovement : MonoBehaviour, IMovement
 {
+    [field:SerializeField]
     public InputType inputType { get; set; }
 
     private SoundManager sound;

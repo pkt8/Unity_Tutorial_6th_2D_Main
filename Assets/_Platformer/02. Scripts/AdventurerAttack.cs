@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AdventurerAttack : MonoBehaviour
 {
+    [HideInInspector]
     public InputType inputType;
 
     private SoundManager sound;
