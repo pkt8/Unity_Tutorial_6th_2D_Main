@@ -7,6 +7,10 @@ public class InteractionEvent : MonoBehaviour
     public InteractionType interactionType;
 
     public GameObject signPostUI;
+    public GameObject house;
+    public GameObject houseRoof;
+    public GameObject env;
+    public GameObject npcDialogueUI;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

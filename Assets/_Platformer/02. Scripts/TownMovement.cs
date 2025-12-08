@@ -1,3 +1,4 @@
+using System;
 using Platformer;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class TownMovement : MonoBehaviour, IMovement
     private Animator anim;
     private Rigidbody2D rb;
     private CapsuleCollider2D coll;
+
+    private IInteractable currentInteractable;
 
     private float h, v;
 
@@ -39,7 +42,22 @@ public class TownMovement : MonoBehaviour, IMovement
         SetAnimation();
         Move();
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        currentInteractable = other.GetComponent<IInteractable>();
+        
+        if (currentInteractable != null)
+            currentInteractable.Interact();
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (currentInteractable != null)
+            currentInteractable.UnInteract();
+    }
+
+
     public void InputJoystick(float h, float v)
     {
         if (inputType == InputType.Joystick)
