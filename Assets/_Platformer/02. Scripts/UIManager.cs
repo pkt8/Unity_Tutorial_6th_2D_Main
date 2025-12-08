@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
             attack.inputType = movement.inputType;
         }
-
+        
         selectedInput.value = (int)movement.inputType;
 
         selectedInput.onValueChanged.AddListener(SetInputType);
