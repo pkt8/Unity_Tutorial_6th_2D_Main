@@ -48,7 +48,7 @@ public class TownMovement : MonoBehaviour, IMovement
         currentInteractable = other.GetComponent<IInteractable>();
         
         if (currentInteractable != null)
-            currentInteractable.Interact();
+            currentInteractable.Interact(transform);
     }
 
     private void OnTriggerExit2D(Collider2D other)

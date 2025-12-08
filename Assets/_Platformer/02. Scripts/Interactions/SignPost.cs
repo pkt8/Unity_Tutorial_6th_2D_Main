@@ -9,7 +9,7 @@ public class SignPost : MonoBehaviour, IInteractable
     
     public bool IsInteracting { get; private set; }
 
-    public void Interact()
+    public void Interact(Transform interactor = null)
     {
         IsInteracting = true;
         signPostUI.SetActive(true);

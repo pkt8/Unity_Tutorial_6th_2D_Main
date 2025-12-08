@@ -1,10 +1,12 @@
-﻿namespace Platformer
+﻿using UnityEngine;
+
+namespace Platformer
 {
     public interface IInteractable
     {
         bool IsInteracting { get; }
 
-        void Interact();
+        void Interact(Transform interactor = null);
         void UnInteract();
     }
 }
