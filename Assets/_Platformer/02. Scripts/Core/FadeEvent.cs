@@ -13,8 +13,10 @@ namespace Platformer
             StartCoroutine(FadeRoutine(fadeTime, fadeColor, isFade));
         }
         
-        IEnumerator FadeRoutine(float fadeTime, Color fadeColor, bool isFade)
+        public IEnumerator FadeRoutine(float fadeTime, Color fadeColor, bool isFade)
         {
+            fadeImage.gameObject.SetActive(true);
+            
             float timer = 0f;
             float percent = 0f;
 
@@ -34,6 +36,9 @@ namespace Platformer
                 
                 yield return null;
             }
+            
+            if (!isFade)
+                fadeImage.gameObject.SetActive(false);
         }
     }
 }
