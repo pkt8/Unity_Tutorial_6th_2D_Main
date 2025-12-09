@@ -29,16 +29,29 @@ public class Door : MonoBehaviour, IInteractable
     IEnumerator InteractRoutine(Transform interactor)
     {
         sound.SoundOneShot("Door Open");
-        yield return StartCoroutine(fade.FadeRoutine(3, Color.black, true));
-  
-        var pos = IsInteracting ? houseOutPos : houseInPos;
-        interactor.position = pos;
-        
-        foreach (var obj in insideObjs)
-            obj.SetActive(!IsInteracting);
-        
-        foreach (var obj in outsideObjs)
-            obj.SetActive(IsInteracting);
+        fade.Fade(3, Color.black, true);
+        yield return new WaitForSeconds(3f);
+
+        if (!IsInteracting)
+        {
+            interactor.position = houseInPos;
+
+            foreach (var obj in insideObjs)
+                obj.SetActive(true);
+
+            foreach (var obj in outsideObjs)
+                obj.SetActive(false);
+        }
+        else
+        {
+            interactor.position = houseOutPos;
+            
+            foreach (var obj in insideObjs)
+                obj.SetActive(false);
+
+            foreach (var obj in outsideObjs)
+                obj.SetActive(true);
+        }
 
         IsInteracting = !IsInteracting;
 

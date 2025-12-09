@@ -11737,8 +11737,6 @@ MonoBehaviour:
     \uB2F9\uBD84 \uD568\uB7C9\uC774 \uB192\uC544 \uC801\uB2F9\uB7C9\uC744 \uC12D\uCDE8\uD558\uB294
     \uAC83\uC774 \uC911\uC694\uD569\uB2C8\uB2E4."
   typingSpeed: 0.05
-  npcUI: {fileID: 7482868742089835458}
-  data: {fileID: 11400000, guid: da9fc44ea04454241b660e6c6b38851a, type: 2}
 --- !u!1 &274369894
 GameObject:
   m_ObjectHideFlags: 0
@@ -26077,7 +26075,7 @@ Transform:
   m_GameObject: {fileID: 1012711313}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3, y: 4.6, z: -10}
+  m_LocalPosition: {x: 3.72, y: 5.06, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26427,7 +26425,7 @@ Transform:
   m_GameObject: {fileID: 1076552310}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 1.75, z: 0}
+  m_LocalPosition: {x: 2.39, y: 2.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27038,7 +27036,7 @@ GameObject:
   - component: {fileID: 1184520870}
   - component: {fileID: 1184520869}
   m_Layer: 0
-  m_Name: Male1_80
+  m_Name: NPC_Batur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75788,8 +75786,8 @@ Transform:
   - {fileID: 946201278}
   - {fileID: 1188950156}
   - {fileID: 470902229}
-  - {fileID: 1184520871}
   - {fileID: 265592334}
+  - {fileID: 1184520871}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1782230422
@@ -84290,14 +84288,14 @@ RectTransform:
   m_GameObject: {fileID: 7883049393088592756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.76432, y: 0.76432, z: 0.76432}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3506779735751334589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 508, y: 136}
+  m_AnchoredPosition: {x: 508, y: 129}
   m_SizeDelta: {x: 928, y: 1120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1703579019213979928

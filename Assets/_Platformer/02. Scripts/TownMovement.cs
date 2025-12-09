@@ -14,7 +14,7 @@ public class TownMovement : MonoBehaviour, IMovement
     private CapsuleCollider2D coll;
 
     private IInteractable currentInteractable;
-
+    
     private float h, v;
 
     [SerializeField] private float moveSpeed = 3f;

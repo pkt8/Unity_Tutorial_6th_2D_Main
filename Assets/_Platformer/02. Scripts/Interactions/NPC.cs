@@ -12,18 +12,13 @@ namespace Platformer
         [SerializeField] private string dialogueText;
 
         [SerializeField] private float typingSpeed = 0.1f;
-
-        public NPCUI npcUI;
-        public NPCDataSO data;
-
+        
         private Coroutine typingRoutine;
 
         public bool IsInteracting { get; private set; }
 
         public void Interact(Transform interactor = null)
         {
-            npcUI.SetData(data.name, data.age, data.gender, data.job, data.description, data.icon);
-            
             textUI.text = "";
 
             IsInteracting = true;
@@ -45,7 +40,8 @@ namespace Platformer
         
         public void UnInteract()
         {
-            StopCoroutine(typingRoutine);
+            if (typingRoutine != null)
+                StopCoroutine(typingRoutine);
             
             IsInteracting = false;
             dialogueUI.SetActive(false);
