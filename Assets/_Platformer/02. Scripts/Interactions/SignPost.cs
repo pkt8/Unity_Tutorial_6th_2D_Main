@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SignPost : MonoBehaviour, IInteractable
 {
-    public GameObject signPostUI;
+    [SerializeField] private GameObject signPostUI;
     
     public bool IsInteracting { get; private set; }
 
