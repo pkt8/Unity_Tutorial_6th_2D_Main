@@ -6,34 +6,33 @@ namespace Platformer
 {
     public class NPC : MonoBehaviour, IInteractable
     {
-        [SerializeField] private GameObject dialogueUI;
-        [SerializeField] private TextMeshProUGUI textUI;
-
-        [SerializeField] private string dialogueText;
-
+        [SerializeField] private NPCUI ui;
+        [SerializeField] private NPCDataSO data;
+   
         [SerializeField] private float typingSpeed = 0.1f;
         
         private Coroutine typingRoutine;
 
         public bool IsInteracting { get; private set; }
-
+        
         public void Interact(Transform interactor = null)
         {
-            textUI.text = "";
-
+            ui.SetData(data.name, data.age, data.gender, data.job, data.description, data.icon);
+            ui.DescriptionUI.text = "";
+            
             IsInteracting = true;
-            dialogueUI.SetActive(true);
+            ui.gameObject.SetActive(true);
 
             typingRoutine = StartCoroutine(InteractRoutine());
         }
 
         IEnumerator InteractRoutine()
         {
-            int textLength = dialogueText.Length;
+            int textLength = data.description.Length;
             for (int i = 0; i < textLength; i++)
             {
-                textUI.text += dialogueText[i];
-
+                ui.DescriptionUI.text += data.description[i];
+            
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
@@ -44,7 +43,7 @@ namespace Platformer
                 StopCoroutine(typingRoutine);
             
             IsInteracting = false;
-            dialogueUI.SetActive(false);
+            ui.gameObject.SetActive(false);
         }
     }
 }

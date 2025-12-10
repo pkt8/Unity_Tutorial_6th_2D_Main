@@ -64,14 +64,10 @@ public class AdventurerMovement : MonoBehaviour, IMovement
     
     public void InputJoystick(float h, float v)
     {
-        Debug.Log("조이스틱 입력 1");
-        
         if (inputType == InputType.Joystick)
         {
             this.h = h;
             this.v = v;
-            
-            Debug.Log("조이스틱 입력 2");
         }
     }
 

@@ -7,6 +7,7 @@ public class NPCDataSO : ScriptableObject
     public string age;
     public string gender;
     public string job;
-    public string description;
+    [TextArea] public string description;
+    
     public Sprite icon;
 }
