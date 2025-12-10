@@ -31,41 +31,42 @@ public class Portal : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(3f);
         
         progressBar.gameObject.SetActive(true);
+        progressBar.fillAmount = 0;
         
-        // float timer = 0;
-        // progressBar.fillAmount = 0;
-        // while (true)
-        // {
-        //     timer += Time.deltaTime;
-        //     progressBar.fillAmount = timer / 3f;
-        //     yield return null;
-        //
-        //     if (progressBar.fillAmount >= 1f)
-        //         break;
-        // }
-        
-        // 비동기 Scene 로드
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1);
-        operation.allowSceneActivation = false;
-
-        while (!operation.isDone)
+        // Scene 로드
+        float timer = 0;
+        while (true)
         {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            
-            progressBar.fillAmount = progress;
-
-            if (operation.progress >= 0.9f)
-            {
-                progressBar.fillAmount = 1f;
-
-                yield return new WaitForSeconds(1f);
-                operation.allowSceneActivation = true;
-            }
-
+            timer += Time.deltaTime;
+            progressBar.fillAmount = timer / 3f;
             yield return null;
+
+            if (progressBar.fillAmount >= 1f)
+                break;
         }
         
-        // SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
+        
+        // // 비동기 Scene 로드
+        // AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+        // operation.allowSceneActivation = false;
+        //
+        // while (!operation.isDone)
+        // {
+        //     float progress = Mathf.Clamp01(operation.progress / 0.9f);
+        //     
+        //     progressBar.fillAmount = progress;
+        //
+        //     if (operation.progress >= 0.9f)
+        //     {
+        //         progressBar.fillAmount = 1f;
+        //
+        //         yield return new WaitForSeconds(1f);
+        //         operation.allowSceneActivation = true;
+        //     }
+        //
+        //     yield return null;
+        // }
     }
 
     public void UnInteract()

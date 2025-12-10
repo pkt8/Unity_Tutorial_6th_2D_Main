@@ -123729,7 +123729,7 @@ GameObject:
   - component: {fileID: 69018333006144406}
   - component: {fileID: 3022713854083414884}
   m_Layer: 0
-  m_Name: vfx_Implosion
+  m_Name: Implosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
