@@ -1,5 +1,17 @@
 using UnityEngine;
 
+// [System.Serializable]
+// public class NPCData
+// {
+//     public string name;
+//     public string age;
+//     public string gender;
+//     public string job;
+//     [TextArea] public string description;
+//     
+//     public Sprite icon;
+// }
+
 [CreateAssetMenu(fileName = "NPCDataSO", menuName = "Scriptable Objects/NPCDataSO")]
 public class NPCDataSO : ScriptableObject
 {
@@ -10,4 +22,6 @@ public class NPCDataSO : ScriptableObject
     [TextArea] public string description;
     
     public Sprite icon;
+    
+    // public NPCData[] datas;
 }
