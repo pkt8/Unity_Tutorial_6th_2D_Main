@@ -169,7 +169,7 @@ public class AdventurerMovement : MonoBehaviour, IMovement
         }
         else if (v >= -0.45f) // Idle 상태
         {
-            coll.offset = new Vector2(coll.offset.x, 0.8f);
+            coll.offset = new Vector2(coll.offset.x, 0.87f);
             coll.size = new Vector2(coll.size.x, 1.6f);
             moveSpeed = 3f;
         }
