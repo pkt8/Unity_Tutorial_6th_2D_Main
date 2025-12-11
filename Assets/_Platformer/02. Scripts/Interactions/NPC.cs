@@ -21,13 +21,26 @@ namespace Platformer
             ui.DescriptionUI.text = "";
             
             IsInteracting = true;
-            ui.gameObject.SetActive(true);
+            // ui.gameObject.SetActive(true);
 
             typingRoutine = StartCoroutine(InteractRoutine());
         }
 
         IEnumerator InteractRoutine()
         {
+            Debug.Log($"{data.name}과 상호작용하려면 'F' 키를 누르세요.");
+            
+            while (IsInteracting)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    ui.gameObject.SetActive(true);
+                    break;
+                }
+                
+                yield return null;
+            }
+            
             int textLength = data.description.Length;
             for (int i = 0; i < textLength; i++)
             {

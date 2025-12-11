@@ -20,8 +20,11 @@ public class NPCDataSO : ScriptableObject
     public string gender;
     public string job;
     [TextArea] public string description;
-    
+
     public Sprite icon;
+    
+    // public int dialogueIndex;
+    // public string[] dialogues;
     
     // public NPCData[] datas;
 }

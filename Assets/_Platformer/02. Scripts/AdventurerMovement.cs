@@ -14,6 +14,35 @@ public class AdventurerMovement : MonoBehaviour, IMovement
 
     private float h, v;
 
+    // private float gravity;
+    // public float Gravity
+    // {
+    //     get
+    //     {
+    //         return gravity;
+    //     }
+    //     set
+    //     {
+    //         gravity = value;
+    //         rb.gravityScale = value;
+    //     }
+    // }
+
+    private bool isLadder;
+    public bool IsLadder
+    {
+        get { return isLadder; }
+        set
+        {
+            isLadder = value;
+
+            if (isLadder)
+                rb.gravityScale = 0;
+            else
+                rb.gravityScale = 1;
+        }
+    }
+
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float jumpPower = 7f;
 
@@ -70,7 +99,13 @@ public class AdventurerMovement : MonoBehaviour, IMovement
     {
         if (isEnter)
         {
-            currentInteractable = other.GetComponent<IInteractable>();
+            if (currentInteractable != other.GetComponent<IInteractable>())
+            {
+                if (currentInteractable != null)
+                    currentInteractable.UnInteract();
+
+                currentInteractable = other.GetComponent<IInteractable>();
+            }
 
             if (currentInteractable != null)
                 currentInteractable.Interact(transform);
@@ -94,6 +129,9 @@ public class AdventurerMovement : MonoBehaviour, IMovement
     public void Move()
     {
         rb.linearVelocityX = h * moveSpeed;
+
+        if (IsLadder)
+            rb.linearVelocityY = v * jumpPower;
     }
 
     public void Jump()
