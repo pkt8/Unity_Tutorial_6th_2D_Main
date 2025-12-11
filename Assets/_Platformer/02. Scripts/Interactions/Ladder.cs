@@ -13,7 +13,6 @@ public class Ladder : MonoBehaviour, IInteractable
             movement = interactor.GetComponent<AdventurerMovement>();
 
         movement.IsLadder = true;
-
     }
 
     public void UnInteract()

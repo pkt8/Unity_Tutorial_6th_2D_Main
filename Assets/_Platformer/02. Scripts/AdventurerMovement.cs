@@ -13,25 +13,14 @@ public class AdventurerMovement : MonoBehaviour, IMovement
     private CapsuleCollider2D coll;
 
     private float h, v;
-
-    // private float gravity;
-    // public float Gravity
-    // {
-    //     get
-    //     {
-    //         return gravity;
-    //     }
-    //     set
-    //     {
-    //         gravity = value;
-    //         rb.gravityScale = value;
-    //     }
-    // }
-
+    
     private bool isLadder;
     public bool IsLadder
     {
-        get { return isLadder; }
+        get
+        {
+            return isLadder;
+        }
         set
         {
             isLadder = value;

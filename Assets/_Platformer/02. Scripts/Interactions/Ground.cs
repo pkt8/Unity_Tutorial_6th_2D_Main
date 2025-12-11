@@ -11,7 +11,7 @@ public class Ground : MonoBehaviour, IInteractable
     {
         if (movement == null)
             movement = interactor.GetComponent<AdventurerMovement>();
-
+        
         movement.SetGroundAnimation(true);
     }
 
