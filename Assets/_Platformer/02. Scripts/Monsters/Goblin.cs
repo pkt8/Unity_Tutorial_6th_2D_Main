@@ -4,49 +4,87 @@ namespace Platformer
 {
     public class Goblin : Monster
     {
-        private Vector2 moveDir;
-        
-        private float idleTime;
-        private float patrolTime;
+        private float moveDir;
+
+        private float timer;
+        private float idleTime = 3f;
+        private float patrolTime = 5f;
         private float attackTime;
 
-        private float traceDistance;
-        private float attackDistance;
+        private float traceDistance = 5f;
+        private float attackDistance = 2f;
         
         void Start()
         {
             Init();
+            attackTime = monsterData.attackTime;
         }
 
         protected override void Idle()
         {
-            // 가만히 있는 기능
-            // 몇 초동안 가만히 있을 것인지?
+            timer += Time.deltaTime;
+            if (timer >= idleTime)
+            {
+                timer = 0f;
+                patrolTime = Random.Range(0f, 5f);
+
+                int ranNumber = Random.Range(0, 2); // 0 , 1
+
+                if (ranNumber == 0)
+                    moveDir = -1;
+                else if (ranNumber == 1)
+                    moveDir = 1;
+
+                // moveDir = Random.Range(0, 2) == 0 ? -1 : 1;
+                
+                ChangeState(MonsterState.Patrol);
+            }
+            
+            if (distance <= traceDistance)
+            {
+                ChangeState(MonsterState.Trace);
+            }
         }
 
         protected override void Patrol()
         {
-            // 돌아다니는 기능
-            // 몇 초동안 돌아다닐 것인지?
-            // 어떤 방향으로 이동할 것인지? -> 오른쪽 / 왼쪽
-            // 이동속도
-            // 정찰 중에 타겟을 확인할 수 있는 거리
+            transform.position += Vector3.right * moveDir * moveSpeed * Time.deltaTime;
+            
+            timer += Time.deltaTime;
+            if (timer >= patrolTime)
+            {
+                timer = 0f;
+                idleTime = Random.Range(0f, 5f);
+                ChangeState(MonsterState.Idle);
+            }
+            
+            if (distance <= traceDistance)
+            {
+                ChangeState(MonsterState.Trace);
+            }
         }
 
         protected override void Trace()
         {
-            // 타겟을 쫓아다니는 기능
-            // 타겟
-            // 추격 중에 타겟을 쫓아갈 수 있는 거리
+            if (distance > traceDistance)
+            {
+                timer = 0f;
+                idleTime = Random.Range(0f, 5f);
+                
+                ChangeState(MonsterState.Idle);
+            }
+            else if (distance <= attackDistance)
+            {
+                ChangeState(MonsterState.Attack);
+            }
         }
 
         protected override void Attack()
         {
-            // 타겟을 공격하는 기능
-            // 타겟
-            // 공격할 수 있는 거리
-            // 공격 데미지
-            // 공격 쿨타임
+            if (distance > attackDistance)
+            {
+                ChangeState(MonsterState.Trace);
+            }
         }
     }
 }

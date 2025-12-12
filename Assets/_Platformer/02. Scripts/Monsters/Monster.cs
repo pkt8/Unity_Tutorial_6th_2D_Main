@@ -13,11 +13,13 @@ namespace Platformer
         private Rigidbody2D rb;
         private Collider2D coll;
 
-        [SerializeField] private MonsterDataSO monsterData;
+        [SerializeField] protected MonsterDataSO monsterData;
         
         protected float hp, maxHp;
         protected float moveSpeed;
         protected float damage;
+        
+        protected float distance;
 
         protected virtual void Init()
         {
@@ -30,6 +32,8 @@ namespace Platformer
             maxHp = monsterData.hp;
             moveSpeed = monsterData.moveSpeed;
             damage = monsterData.damage;
+
+            target = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         protected abstract void Idle();
@@ -39,10 +43,7 @@ namespace Platformer
         
         void Update()
         {
-            float distance = Vector3.Distance(transform.position, target.position);
-            
-            
-            
+            distance = Vector3.Distance(transform.position, target.position);
             
             switch (monsterState)
             {
@@ -58,6 +59,14 @@ namespace Platformer
                 case MonsterState.Attack:
                     Attack();
                     break;
+            }
+        }
+
+        protected void ChangeState(MonsterState newState)
+        {
+            if (monsterState != newState)
+            {
+                monsterState = newState;
             }
         }
     }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c615e50ceaec869448eee353b2750a10, type: 3}
   m_Name: Monster_Skeleton
   m_EditorClassIdentifier: 
-  name: 
-  hp: 0
-  moveSpeed: 0
-  damage: 0
+  name: Skeleton
+  hp: 10
+  moveSpeed: 1
+  damage: 2
+  attackTime: 2
