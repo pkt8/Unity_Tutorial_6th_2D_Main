@@ -8,14 +8,20 @@ public class Ground : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (movement == null)
-            movement = other.gameObject.GetComponent<AdventurerMovement>();
-        
-        movement.SetGroundAnimation(true);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (movement == null)
+                movement = other.gameObject.GetComponent<AdventurerMovement>();
+
+            movement.SetGroundAnimation(true);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        movement.SetGroundAnimation(false);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            movement.SetGroundAnimation(false);
+        }
     }
 }
