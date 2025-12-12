@@ -1,21 +1,20 @@
-﻿using Platformer;
+﻿using System;
+using Platformer;
 using UnityEngine;
 
-public class Ground : MonoBehaviour, IInteractable
+public class Ground : MonoBehaviour
 {
     private AdventurerMovement movement;
-
-    public bool IsInteracting { get; }
-
-    public void Interact(Transform interactor = null)
+    
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (movement == null)
-            movement = interactor.GetComponent<AdventurerMovement>();
+            movement = other.gameObject.GetComponent<AdventurerMovement>();
         
         movement.SetGroundAnimation(true);
     }
 
-    public void UnInteract()
+    private void OnCollisionExit2D(Collision2D other)
     {
         movement.SetGroundAnimation(false);
     }

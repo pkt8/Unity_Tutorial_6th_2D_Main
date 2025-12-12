@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Platformer
@@ -7,9 +8,9 @@ namespace Platformer
         public enum MonsterState { Idle, Patrol, Trace, Attack }
         public MonsterState monsterState = MonsterState.Idle;
 
-        private Transform target;
+        protected Transform target;
         
-        private Animator anim;
+        protected Animator anim;
         private Rigidbody2D rb;
         private Collider2D coll;
 
@@ -19,6 +20,7 @@ namespace Platformer
         protected float moveSpeed;
         protected float damage;
         
+        protected int moveDir;
         protected float distance;
 
         protected virtual void Init()
@@ -59,6 +61,16 @@ namespace Platformer
                 case MonsterState.Attack:
                     Attack();
                     break;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Wall"))
+            {
+                Debug.Log("방향을 반대로 변경");
+                moveDir *= -1;
+                transform.localScale = new Vector3(moveDir, 1, 1);
             }
         }
 

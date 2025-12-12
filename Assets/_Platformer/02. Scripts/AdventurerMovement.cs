@@ -102,7 +102,7 @@ public class AdventurerMovement : MonoBehaviour, IMovement
         else
         {
             if (currentInteractable != null)
-                currentInteractable.UnInteract();
+                currentInteractable.UnInteract ();
         }
     }
 
