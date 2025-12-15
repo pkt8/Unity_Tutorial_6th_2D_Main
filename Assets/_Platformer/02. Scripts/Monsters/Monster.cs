@@ -110,7 +110,7 @@ namespace Platformer
             hp -= damage;
             anim.SetTrigger("Hit");
             hpSlider.value = hp / maxHp;
-
+            
             if (hp <= 0)
                 Death();
         }
