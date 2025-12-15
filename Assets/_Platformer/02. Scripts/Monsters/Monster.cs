@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Platformer
 {
@@ -9,6 +10,8 @@ namespace Platformer
         public enum MonsterState { Idle, Patrol, Trace, Attack }
         public MonsterState monsterState = MonsterState.Idle;
 
+        private ItemManager itemManager;
+        
         protected Transform target;
         
         protected Animator anim;
@@ -30,6 +33,7 @@ namespace Platformer
 
         protected virtual void Init()
         {
+            itemManager = FindFirstObjectByType<ItemManager>();
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
             coll = GetComponent<Collider2D>();
@@ -78,7 +82,7 @@ namespace Platformer
         {
             if (other.CompareTag("Wall"))
             {
-                Debug.Log("방향을 반대로 변경");
+                // Debug.Log("방향을 반대로 변경");
                 moveDir *= -1;
                 transform.localScale = new Vector3(moveDir, 1, 1);
                 hpSlider.transform.parent.localScale = new Vector3(moveDir, 1, 1);
@@ -89,7 +93,7 @@ namespace Platformer
             {
                 target.TakeDamage(damage);
                 
-                Debug.Log($"{gameObject.name}이 {other.name}에게 {damage}만큼의 데미지 적용");
+                // Debug.Log($"{gameObject.name}이 {other.name}에게 {damage}만큼의 데미지 적용");
             }
         }
 
@@ -113,6 +117,11 @@ namespace Platformer
 
         public void Death()
         {
+            int ranCount = Random.Range(0, 3); // 0, 1, 2
+
+            for (int i = 0; i < ranCount; i++)
+                itemManager.DropItem(transform.position);
+            
             isDead = true;
             rb.bodyType = RigidbodyType2D.Kinematic;
             coll.enabled = false;

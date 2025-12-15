@@ -50,7 +50,7 @@ namespace Platformer
             {
                 target.TakeDamage(damage);
                 
-                Debug.Log($"{gameObject.name}이 {other.name}에게 {damage}만큼의 데미지 적용");
+                // Debug.Log($"{gameObject.name}이 {other.name}에게 {damage}만큼의 데미지 적용");
             }
         }
 
