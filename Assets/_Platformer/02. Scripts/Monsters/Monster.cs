@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Platformer
 {
-    public abstract class Monster : MonoBehaviour
+    public abstract class Monster : MonoBehaviour, IDamageable
     {
         public enum MonsterState { Idle, Patrol, Trace, Attack }
         public MonsterState monsterState = MonsterState.Idle;
@@ -14,6 +15,8 @@ namespace Platformer
         private Rigidbody2D rb;
         private Collider2D coll;
 
+        [SerializeField] protected Slider hpSlider;
+
         [SerializeField] protected MonsterDataSO monsterData;
         
         protected float hp, maxHp;
@@ -22,6 +25,8 @@ namespace Platformer
         
         protected int moveDir;
         protected float distance;
+
+        private bool isDead = false;
 
         protected virtual void Init()
         {
@@ -36,6 +41,8 @@ namespace Platformer
             damage = monsterData.damage;
 
             target = GameObject.FindGameObjectWithTag("Player").transform;
+
+            hpSlider.value = hp / maxHp;
         }
 
         protected abstract void Idle();
@@ -45,6 +52,9 @@ namespace Platformer
         
         void Update()
         {
+            if (isDead)
+                return;
+            
             distance = Vector3.Distance(transform.position, target.position);
             
             switch (monsterState)
@@ -71,6 +81,15 @@ namespace Platformer
                 Debug.Log("방향을 반대로 변경");
                 moveDir *= -1;
                 transform.localScale = new Vector3(moveDir, 1, 1);
+                hpSlider.transform.parent.localScale = new Vector3(moveDir, 1, 1);
+            }
+
+            var target = other.GetComponent<IDamageable>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+                
+                Debug.Log($"{gameObject.name}이 {other.name}에게 {damage}만큼의 데미지 적용");
             }
         }
 
@@ -80,6 +99,32 @@ namespace Platformer
             {
                 monsterState = newState;
             }
+        }
+
+        public void TakeDamage(float damage)
+        {
+            hp -= damage;
+            anim.SetTrigger("Hit");
+            hpSlider.value = hp / maxHp;
+
+            if (hp <= 0)
+                Death();
+        }
+
+        public void Death()
+        {
+            isDead = true;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            coll.enabled = false;
+            anim.SetTrigger("Death");
+            Debug.Log($"{gameObject.name} 죽음");
+
+            Invoke(nameof(DelayEvent), 3f);
+        }
+
+        private void DelayEvent()
+        {
+            Destroy(gameObject);
         }
     }
 }

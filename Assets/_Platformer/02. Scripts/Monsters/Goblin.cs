@@ -36,7 +36,8 @@ namespace Platformer
                 // moveDir = Random.Range(0, 2) == 0 ? -1 : 1;
 
                 transform.localScale = new Vector3(moveDir, 1, 1);
-
+                hpSlider.transform.parent.localScale = new Vector3(moveDir, 1, 1);
+                
                 anim.SetBool("IsRun", true);
                 ChangeState(MonsterState.Patrol);
             }
@@ -97,7 +98,9 @@ namespace Platformer
                 moveDir = -1;
 
             transform.localScale = new Vector3(moveDir, 1, 1);
+            hpSlider.transform.parent.localScale = new Vector3(moveDir, 1, 1);
 
+            
             if (distance <= attackDistance)
             {
                 timer = attackTime;

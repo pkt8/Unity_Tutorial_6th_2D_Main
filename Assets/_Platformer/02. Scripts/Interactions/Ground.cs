@@ -12,7 +12,7 @@ public class Ground : MonoBehaviour
         {
             if (movement == null)
                 movement = other.gameObject.GetComponent<AdventurerMovement>();
-
+            
             movement.SetGroundAnimation(true);
         }
     }

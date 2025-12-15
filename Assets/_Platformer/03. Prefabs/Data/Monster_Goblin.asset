@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Goblin
   m_EditorClassIdentifier: 
   name: Goblin
-  hp: 3
+  hp: 5
   moveSpeed: 2
   damage: 1
-  attackTime: 1
+  attackTime: 2
