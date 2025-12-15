@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Platformer
 {
-    public class Potion : MonoBehaviour, IInteractable
+    public class Potion : MonoBehaviour, IInteractable, IItem
     {
         public enum PotionType { Red, Blue }
         public PotionType type;

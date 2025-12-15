@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Platformer
 {
-    public class Coin : MonoBehaviour, IInteractable
+    public class Coin : MonoBehaviour, IInteractable, IItem
     {
         public enum CoinType { Red, Green, Blue, Purple, Gold }
         public CoinType type;

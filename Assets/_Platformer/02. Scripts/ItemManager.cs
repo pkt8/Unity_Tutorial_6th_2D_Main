@@ -21,5 +21,10 @@ namespace Platformer
             // 날아가는 아이템에 회전 적용
             itemRb.AddTorque(Random.Range(-1.5f, 1.5f), ForceMode2D.Impulse);
         }
+
+        public void GetItem()
+        {
+            
+        }
     }
 }

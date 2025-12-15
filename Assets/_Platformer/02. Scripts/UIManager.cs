@@ -13,9 +13,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown selectedInput;
 
     [SerializeField] private GameObject optionUI;
+    [SerializeField] private GameObject inventoryUI;
 
     [SerializeField] private Button optionButton;
     [SerializeField] private Button optionExitButton;
+    [SerializeField] private Button inventoryButton;
     
     void Start()
     {
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
 
         optionButton.onClick.AddListener(OptionUIOn);
         optionExitButton.onClick.AddListener(OptionUIOff);
+        inventoryButton.onClick.AddListener(InventoryUIOn);
     }
 
     private void OptionUIOn()
@@ -49,6 +52,20 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         optionUI.SetActive(false);
+    }
+
+    private void InventoryUIOn()
+    {
+        if (inventoryUI.activeSelf)
+        {
+            Time.timeScale = 1f;
+            inventoryUI.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            inventoryUI.SetActive(true);
+        }
     }
 
     // private void ActiveOptionUI()
