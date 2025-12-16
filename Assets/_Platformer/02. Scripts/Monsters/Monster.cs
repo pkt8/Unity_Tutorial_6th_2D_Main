@@ -18,6 +18,8 @@ namespace Platformer
         private Rigidbody2D rb;
         private Collider2D coll;
 
+        public GameObject returnPortal;
+        
         [SerializeField] protected Slider hpSlider;
 
         [SerializeField] protected MonsterDataSO monsterData;
@@ -47,6 +49,8 @@ namespace Platformer
             target = GameObject.FindGameObjectWithTag("Player").transform;
 
             hpSlider.value = hp / maxHp;
+
+            AdventurerAttack.monsterCount++; // 몬스터 증가
         }
 
         protected abstract void Idle();
@@ -127,6 +131,12 @@ namespace Platformer
             coll.enabled = false;
             anim.SetTrigger("Death");
             Debug.Log($"{gameObject.name} 죽음");
+
+            AdventurerAttack.monsterKillCount++;
+            if (AdventurerAttack.monsterCount == AdventurerAttack.monsterKillCount)
+            {
+                returnPortal.SetActive(true);
+            }
 
             Invoke(nameof(DelayEvent), 3f);
         }

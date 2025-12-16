@@ -12,6 +12,9 @@ namespace Platformer
         private SoundManager sound;
         private Animator anim;
 
+        public static int monsterCount = 0;
+        public static int monsterKillCount = 0;
+
         [SerializeField] private Slider hpSlider;
         [SerializeField] private TextMeshProUGUI hpText;
         [SerializeField] private Image hpBar;
@@ -24,7 +27,7 @@ namespace Platformer
 
         private bool isAttack, isCombo, isFinal;
 
-        void Start()
+        void Awake()
         {
             sound = FindFirstObjectByType<SoundManager>();
 
@@ -115,6 +118,8 @@ namespace Platformer
         {
             hp += healPoint;
 
+            Debug.Log("Heal");
+            
             if (hp > maxHp)
                 hp = maxHp;
             

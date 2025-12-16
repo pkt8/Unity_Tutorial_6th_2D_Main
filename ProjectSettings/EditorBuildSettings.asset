@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Platformer/01. Scenes/0. Intro.unity
+    guid: 42aa1b01e1213f24f8cec5ca0551d512
+  - enabled: 1
     path: Assets/_Platformer/01. Scenes/1. Town.unity
     guid: 1c475454d0a95444b914fd978e9265ab
   - enabled: 1
