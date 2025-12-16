@@ -47,7 +47,7 @@ namespace Platformer
             {
                 Debug.Log("체력 50 회복");
                 // playerAttack.Hp += 50;
-                playerAttack.Heal(50);
+                playerAttack.Heal(5);
 
             }
             else if (type == PotionType.Blue)

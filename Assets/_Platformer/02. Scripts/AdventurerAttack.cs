@@ -117,8 +117,6 @@ namespace Platformer
         public void Heal(float healPoint)
         {
             hp += healPoint;
-
-            Debug.Log("Heal");
             
             if (hp > maxHp)
                 hp = maxHp;

@@ -36,47 +36,50 @@ public class Portal : MonoBehaviour, IInteractable
         progressBar.gameObject.SetActive(true);
         progressBar.fillAmount = 0;
 
-        // 일반 Scene 로드
-        float timer = 0;
-        while (true)
-        {
-            timer += Time.deltaTime;
-            progressBar.fillAmount = timer / 3f;
-            yield return null;
-
-            if (progressBar.fillAmount >= 1f)
-                break;
-        }
-
-        if (type == PortalType.ToTown)
-            SceneManager.LoadScene(1);
-        else if (type == PortalType.ToHuntingGround)
-            SceneManager.LoadScene(2);
+        // // 일반 Scene 로드
+        // float timer = 0;
+        // while (true)
+        // {
+        //     timer += Time.deltaTime;
+        //     progressBar.fillAmount = timer / 3f;
+        //     yield return null;
+        //
+        //     if (progressBar.fillAmount >= 1f)
+        //         break;
+        // }
+        //
+        // if (type == PortalType.ToTown)
+        //     SceneManager.LoadScene(1);
+        // else if (type == PortalType.ToHuntingGround)
+        //     SceneManager.LoadScene(2);
 
         
-        // // 비동기 Scene 로드
-        // AsyncOperation operation = SceneManager.LoadSceneAsync(1);
-        // operation.allowSceneActivation = false;
-        //
-        // while (!operation.isDone)
-        // {
-        //     float progress = Mathf.Clamp01(operation.progress / 0.9f);
-        //     
-        //     progressBar.fillAmount = progress;
-        //
-        //     if (operation.progress >= 0.9f)
-        //     {
-        //         progressBar.fillAmount = 1f;
-        //
-        //         yield return new WaitForSeconds(1f);
-        //         operation.allowSceneActivation = true;
-        //     }
-        //
-        //     yield return null;
-        // }
+        // 비동기 Scene 로드
+        AsyncOperation operation = null;
+        if (type == PortalType.ToTown)
+            operation = SceneManager.LoadSceneAsync(1);
+        else if (type == PortalType.ToHuntingGround)
+            operation = SceneManager.LoadSceneAsync(2);
+        
+        operation.allowSceneActivation = false;
+        
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            
+            progressBar.fillAmount = progress;
+        
+            if (operation.progress >= 0.9f)
+            {
+                progressBar.fillAmount = 1f;
+        
+                yield return new WaitForSeconds(1f);
+                operation.allowSceneActivation = true;
+            }
+        
+            yield return null;
+        }
     }
 
-    public void UnInteract()
-    {
-    }
+    public void UnInteract() { }
 }
