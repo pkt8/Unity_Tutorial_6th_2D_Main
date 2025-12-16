@@ -17,6 +17,8 @@ namespace Platformer
         [SerializeField] private Image hpBar;
 
         [SerializeField] private float hp = 10f;
+        // [field: SerializeField] public float Hp { get; private set; }
+
         private float maxHp;
         [SerializeField] private float damage = 1f;
 
@@ -29,9 +31,8 @@ namespace Platformer
             anim = GetComponent<Animator>();
 
             maxHp = hp;
-            hpSlider.value = hp / maxHp;
-            hpText.text = $"{hp * 10} / {maxHp * 10}";
-            hpBar.color = Color.green;
+
+            SetHpUI();
         }
 
         void Update()
@@ -98,13 +99,8 @@ namespace Platformer
         public void TakeDamage(float damage)
         {
             hp -= damage;
-            hpSlider.value = hp / maxHp;
-            hpText.text = $"{hp * 10} / {maxHp * 10}";
 
-            if (hp < 7.5f && hp >= 2.5f)
-                hpBar.color = Color.yellow;
-            else if (hp < 2.5f)
-                hpBar.color = Color.red;
+            SetHpUI();
             
             if (hp <= 0)
                 Death();
@@ -113,6 +109,29 @@ namespace Platformer
         public void Death()
         {
             Debug.Log($"{gameObject.name} 죽음");
+        }
+
+        public void Heal(float healPoint)
+        {
+            hp += healPoint;
+
+            if (hp > maxHp)
+                hp = maxHp;
+            
+            SetHpUI();
+        }
+
+        private void SetHpUI()
+        {
+            hpSlider.value = hp / maxHp;
+            hpText.text = $"{hp * 10} / {maxHp * 10}";
+
+            if (hp >= 7.5f)
+                hpBar.color = Color.green;
+            else if (hp < 7.5f && hp >= 2.5f)
+                hpBar.color = Color.yellow;
+            else if (hp < 2.5f)
+                hpBar.color = Color.red;
         }
     }
 }

@@ -6,6 +6,14 @@ namespace Platformer
     {
         [SerializeField] private GameObject[] itemPrefabs;
 
+        [SerializeField] private Transform slotGroup;
+        [SerializeField] private Slot[] slots;
+
+        void Start()
+        {
+            slots = slotGroup.GetComponentsInChildren<Slot>();
+        }
+
         public void DropItem(Vector3 dropPos)
         {
             int randomIndex = Random.Range(0, itemPrefabs.Length); // 생성할 랜덤 아이템 번호 결정
@@ -22,9 +30,16 @@ namespace Platformer
             itemRb.AddTorque(Random.Range(-1.5f, 1.5f), ForceMode2D.Impulse);
         }
 
-        public void GetItem()
+        public void GetItem(IItem item)
         {
-            
+            foreach (var slot in slots)
+            {
+                if (slot.IsEmpty)
+                {
+                    slot.AddItem(item);
+                    break;
+                }
+            }
         }
     }
 }
