@@ -39,7 +39,9 @@ public class UIManager : MonoBehaviour
 
         optionButton.onClick.AddListener(OptionUIOn);
         optionExitButton.onClick.AddListener(OptionUIOff);
-        inventoryButton.onClick.AddListener(InventoryUIOn);
+        
+        if (inventoryButton != null)
+            inventoryButton.onClick.AddListener(InventoryUIOn);
     }
 
     private void OptionUIOn()
