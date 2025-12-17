@@ -18,6 +18,7 @@ namespace Platformer
             attackTime = monsterData.attackTime;
         }
 
+        #region 대기 기능
         protected override void Idle()
         {
             timer += Time.deltaTime;
@@ -56,7 +57,10 @@ namespace Platformer
                 }
             }
         }
+        #endregion
 
+
+        #region 정찰 기능
         protected override void Patrol()
         {
             transform.position += Vector3.right * moveDir * moveSpeed * Time.deltaTime;
@@ -85,7 +89,10 @@ namespace Platformer
                 }
             }
         }
+        #endregion
 
+
+        #region 추격 기능
         protected override void Trace()
         {
             Vector2 targetDir = (target.position - transform.position).normalized;
@@ -117,7 +124,10 @@ namespace Platformer
                 ChangeState(MonsterState.Idle);
             }
         }
+        #endregion
 
+
+        #region 공격 기능
         protected override void Attack()
         {
             timer += Time.deltaTime;
@@ -133,5 +143,6 @@ namespace Platformer
                 ChangeState(MonsterState.Trace);
             }
         }
+        #endregion
     }
 }

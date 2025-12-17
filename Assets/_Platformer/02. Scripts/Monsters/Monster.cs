@@ -32,14 +32,15 @@ namespace Platformer
         protected float distance;
 
         private bool isDead = false;
-
+        
+        #region 몬스터 초기화
         protected virtual void Init()
         {
             itemManager = FindFirstObjectByType<ItemManager>();
             anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody2D>();
             coll = GetComponent<Collider2D>();
-
+            
             gameObject.name = monsterData.name;
             hp = monsterData.hp;
             maxHp = monsterData.hp;
@@ -52,11 +53,14 @@ namespace Platformer
 
             AdventurerAttack.monsterCount++; // 몬스터 증가
         }
+        #endregion
 
+        #region 몬스터 행동 추상함수
         protected abstract void Idle();
         protected abstract void Patrol();
         protected abstract void Trace();
         protected abstract void Attack();
+        #endregion
         
         void Update()
         {
@@ -109,6 +113,7 @@ namespace Platformer
             }
         }
 
+        #region 몬스터 피격 및 죽음 이벤트
         public void TakeDamage(float damage)
         {
             hp -= damage;
@@ -145,5 +150,6 @@ namespace Platformer
         {
             Destroy(gameObject);
         }
+        #endregion
     }
 }
